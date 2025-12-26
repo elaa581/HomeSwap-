@@ -1,0 +1,70 @@
+﻿<style>
+    /* FOOTER STYLE */
+    .footer {
+        background: linear-gradient(90deg, #28a745, #ff7f50); /* vert → orange */
+        color: white;
+        padding: 25px 0;
+        font-family: Arial, sans-serif;
+    }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+
+            .footer a:hover {
+                text-decoration: underline;
+                color: #000;
+            }
+
+        .footer .footer-social {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            margin-left: 6px;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+            .footer .footer-social:hover {
+                background: white;
+                color: #ff7f50;
+            }
+
+    @@media (max-width: 767px) {
+        .footer .text-md-start, .footer .text-md-end
+
+    {
+        text-align: center !important;
+        margin-bottom: 10px;
+    }
+
+    }
+</style>
+
+<footer class="footer mt-auto">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-6 text-md-start text-center">
+                <strong>HomeSwap Market</strong> — Vendez et achetez des appareils et meubles d'occasion.
+                <div class="small mt-1">© @DateTime.Now.Year HomeSwap. Tous droits réservés.</div>
+            </div>
+
+            <div class="col-md-6 text-md-end text-center mt-2 mt-md-0">
+                <a href="@Url.Action("Privacy", "Home")">Politique de confidentialité</a>
+                <a href="@Url.Action("Contact", "Home")">Contact</a>
+                <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+            </div>
+
+        </div>
+    </div>
+</footer>

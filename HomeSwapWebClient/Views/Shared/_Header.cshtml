@@ -1,0 +1,172 @@
+﻿@using System.Text.Json
+@{
+    var token = Context.Session.GetString("JWToken");
+}
+
+<style>
+    /* -------------------- GLOBAL HEADER -------------------- */
+
+    .header-navbar {
+        background: linear-gradient(135deg, #2ecc71, #e67e22);
+        padding: 12px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        color: white !important;
+    }
+
+    .brand-badge {
+        background: white;
+        color: #e67e22;
+        font-weight: 800;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 20px;
+    }
+
+    .brand-text {
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+    }
+
+    /* LINKS */
+    .navbar .nav-link {
+        color: white !important;
+        font-weight: 500;
+        padding: 8px 15px !important;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+        .navbar .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+    /* SEARCH BAR */
+    .btn-search {
+        background: #fff;
+        color: #e67e22;
+        font-weight: 600;
+        border-radius: 8px;
+        border: none;
+        padding: 6px 14px;
+        transition: 0.3s;
+    }
+
+        .btn-search:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+    /* LOGIN / SIGNUP */
+    .btn-signup {
+        background: white;
+        color: #2ecc71 !important;
+        border-radius: 8px;
+        padding: 8px 15px !important;
+        font-weight: 600;
+        margin-left: 5px;
+    }
+
+        .btn-signup:hover {
+            background: #f7f7f7;
+        }
+
+    /* DROPDOWN */
+    .dropdown-menu {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .btn-logout {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 6px;
+        transition: 0.3s;
+    }
+
+        .btn-logout:hover {
+            opacity: 0.9;
+        }
+
+    /* USER ICON (rond) */
+    .user-circle {
+        width: 38px;
+        height: 38px;
+        background: white;
+        color: #e67e22;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light header-navbar">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="@Url.Action("Index", "ProductClient")">
+            <span class="brand-badge">HS</span>
+            <span class="ms-2 brand-text">HomeSwap Market</span>
+        </a>
+
+        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "ProductClient")">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Create", "ProductClient")">Vendre</a></li>
+            </ul>
+
+            <form class="d-flex me-3" method="get" action="@Url.Action("Index", "ProductClient")">
+                <input class="form-control form-control-sm me-2"
+                       type="search" name="q" placeholder="Rechercher..."
+                       style="border-radius: 8px;">
+                <button class="btn btn-sm btn-search">Rechercher</button>
+            </form>
+
+            <ul class="navbar-nav">
+                @if (!string.IsNullOrEmpty(token))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-bs-toggle="dropdown">
+                            <div class="user-circle">U</div>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("Profile", "Account")">
+                                    Profil
+                                </a>
+                            </li>
+
+                            <li><hr class="dropdown-divider" /></li>
+
+                            <li>
+                                <form method="post" action="@Url.Action("Logout", "Account")" class="px-3">
+                                    <button type="submit" class="btn btn-sm btn-logout w-100">Se déconnecter</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Login", "Account")">Se connecter</a></li>
+                    <li class="nav-item"><a class="nav-link btn-signup" href="@Url.Action("Register", "Account")">S'inscrire</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,89 @@
+﻿@model HomeSwapWebClient.Models.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Mon Profil";
+}
+
+<style>
+    body {
+        background: #f5f7fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .profile-container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px 25px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 25px;
+        color: #28a745; /* vert */
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 3px solid #28a745;
+    }
+
+    form label {
+        display: block;
+        text-align: left;
+        font-weight: 600;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    form input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    form button {
+        margin-top: 25px;
+        padding: 10px 25px;
+        background: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        form button:hover {
+            background: #218838;
+        }
+</style>
+
+<div class="profile-container">
+    <h2>Mon Profil</h2>
+
+    @* Photo de profil *@
+    
+    <form method="post">
+
+        <label>Nom complet :</label>
+        <input type="text" name="FullName" value="@Model.FullName" />
+
+        <label>Email :</label>
+        <input type="email" name="Email" value="@Model.Email" />
+
+        <label>Nouveau mot de passe :</label>
+        <input type="password" name="NewPassword" />
+
+        <button type="submit">Mettre à jour</button>
+    </form>
+</div>

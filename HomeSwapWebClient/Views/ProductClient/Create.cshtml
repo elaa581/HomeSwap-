@@ -1,0 +1,157 @@
+﻿@model HomeSwapWebClient.Models.ProductClient
+
+@{
+    ViewData["Title"] = "Créer un produit";
+}
+
+<style>
+    body {
+        background: #f5f7fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .create-container {
+        max-width: 750px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-align: center;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: block;
+        color: #444;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        transition: 0.2s;
+    }
+
+        .form-control:focus {
+            background: linear-gradient(90deg, #28a745, #ff7f50);
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+        }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #28a745, #ff7f50);
+        padding: 12px 20px;
+        border-radius: 10px;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #28a745, #ff7f50);
+        }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #ff7f50;
+        font-weight: 500;
+    }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+    /* STYLE DE L'UPLOAD IMAGE */
+    .file-input {
+        padding: 12px;
+        border-radius: 10px;
+        background: #f0f4ff;
+        border: 1px dashed #ff7f50;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .file-input:hover {
+            background: #e4ecff;
+            border-color: #ff7f50;
+        }
+</style>
+
+<div class="create-container">
+    <h1>Ajouter un nouveau produit</h1>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Category"></label>
+            <input asp-for="Category" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Condition"></label>
+            <input asp-for="Condition" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="City"></label>
+            <input asp-for="City" class="form-control" />
+        </div>
+
+        <!-- Upload image stylé -->
+        <div class="form-group">
+            <label asp-for="Image">Image du produit</label>
+            <input asp-for="Image" type="file" class="form-control file-input" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Créer le produit</button>
+
+    </form>
+
+    <a href="@Url.Action("Index", "ProductClient")" class="back-link">
+        ⬅ Retour à la liste
+    </a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
